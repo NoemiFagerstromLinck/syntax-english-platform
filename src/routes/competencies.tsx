@@ -2,14 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { AxisReadout, Meter, PageHeader, SectionTitle, Tag } from "@/components/syntax/primitives";
-import { COMM_LEVELS, competencyDomains, student } from "@/data/platform";
+import { LEVELS, competencyDomains, student } from "@/data/platform";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/competencies")({
   head: () => ({
     meta: [
       { title: "Competency Profile — Syntax" },
-      { name: "description", content: "Progression through Foundation, Junior, Mid-level and Senior professional communication competencies." },
+      { name: "description", content: "Progression through Entry level, Junior, Mid and Senior professional communication competencies." },
       { property: "og:title", content: "Competency Profile — Syntax" },
       { property: "og:description", content: "See how your workplace English communication develops from Foundation to Senior." },
       { property: "og:type", content: "website" },
@@ -28,7 +28,7 @@ function Competencies() {
       <PageHeader
         eyebrow="Communication competency framework"
         title="Competency Profile"
-        description="How effectively you operate in English across real engineering situations. Each domain progresses independently from Foundation to Senior."
+        description="How effectively you operate in English across real engineering situations. Each domain progresses independently from Entry level to Senior."
       />
 
       <section className="grid gap-6 lg:grid-cols-[1fr_1.2fr]">
@@ -42,7 +42,7 @@ function Competencies() {
         </div>
         <div>
           <p className="mb-3 text-sm text-muted-foreground">Three separate measures — a senior engineer can still be building their communication level, and vice versa.</p>
-          <AxisReadout compact technical={`${student.technical.seniority} · ${student.technical.years} years in frontend`} english={`CEFR ${student.english.cefr} · general language ability`} communication={`${student.communication.current} · workplace performance in English`} />
+          <AxisReadout compact technical={`${student.technical.seniority} · ${student.technical.years} years in frontend`} english={`${student.english.level} · general English ability`} communication={`${student.communication.current} · workplace performance in English`} />
         </div>
       </section>
 
@@ -53,7 +53,7 @@ function Competencies() {
             <thead>
               <tr className="border-b border-hairline bg-surface">
                 <th scope="col" className="px-5 py-3 text-left font-normal"><span className="eyebrow">Domain</span></th>
-                {COMM_LEVELS.map((l) => (
+                {LEVELS.map((l) => (
                   <th key={l} scope="col" className="px-3 py-3 text-left font-normal"><span className="eyebrow">{l}</span></th>
                 ))}
               </tr>
@@ -68,7 +68,7 @@ function Competencies() {
                         {d.name}
                       </button>
                     </th>
-                    {COMM_LEVELS.map((l, i) => {
+                    {LEVELS.map((l, i) => {
                       const reached = i < d.level;
                       const current = i === d.level;
                       return (
@@ -88,9 +88,9 @@ function Competencies() {
       </section>
 
       <section className="animate-rise" key={domain.id}>
-        <SectionTitle index="02" title={domain.name} aside={<Tag tone="comm">Working on {COMM_LEVELS[domain.level]}</Tag>} />
+        <SectionTitle index="02" title={domain.name} aside={<Tag tone="comm">Working on {LEVELS[domain.level]}</Tag>} />
         <ol className="grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline md:grid-cols-4">
-          {COMM_LEVELS.map((l, i) => {
+          {LEVELS.map((l, i) => {
             const reached = i < domain.level;
             const current = i === domain.level;
             return (

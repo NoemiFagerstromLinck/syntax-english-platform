@@ -1,8 +1,9 @@
 // Datos de ejemplo ficticios para el prototipo de Syntax. Reemplazar por fuentes reales más adelante.
 // La interfaz está en español; el material de práctica (frases, respuestas modelo, preguntas de entrevista) se mantiene en inglés.
 
-export type CommLevel = "Inicial" | "Junior" | "Semi Senior" | "Senior";
-export const COMM_LEVELS: CommLevel[] = ["Inicial", "Junior", "Semi Senior", "Senior"];
+/** Career ladder used for both technical seniority and English communication. */
+export type Level = "Entry level" | "Junior" | "Mid" | "Senior";
+export const LEVELS: Level[] = ["Entry level", "Junior", "Mid", "Senior"];
 
 export const student = {
   name: "Mariana Costa",
@@ -14,7 +15,7 @@ export const student = {
   nativeLanguage: "Portugués",
   memberSince: "Marzo de 2026",
   technical: {
-    seniority: "Semi Senior",
+    seniority: "Mid" as Level,
     years: 5,
     primaryStack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Node.js"],
     secondaryStack: ["GraphQL", "PostgreSQL", "Playwright", "AWS Lambda"],
@@ -26,17 +27,17 @@ export const student = {
     ],
   },
   english: {
-    cefr: "B2",
-    label: "Intermedio alto",
+    level: "Mid" as Level,
+    label: "Trabaja de forma independiente en inglés",
     lastAssessed: "30 de oct. de 2026",
     skills: [
-      { skill: "Lectura", level: "C1", value: 82 },
-      { skill: "Comprensión auditiva", level: "B2+", value: 74 },
-      { skill: "Escritura", level: "B2", value: 66 },
-      { skill: "Expresión oral", level: "B2", value: 61 },
+      { skill: "Lectura", level: "Sólido", value: 82 },
+      { skill: "Comprensión auditiva", level: "Sólido", value: 74 },
+      { skill: "Escritura", level: "En desarrollo", value: 66 },
+      { skill: "Expresión oral", level: "En desarrollo", value: 61 },
     ],
   },
-  communication: { current: "Junior" as CommLevel, target: "Semi Senior" as CommLevel, progressToNext: 64 },
+  communication: { current: "Junior" as Level, target: "Mid" as Level, progressToNext: 64 },
   objectives: {
     targetRole: "Ingeniera Frontend Senior en un equipo de producto distribuido y de habla inglesa",
     horizon: "12 meses · para nov. de 2027",
@@ -212,9 +213,9 @@ export const learningObjectives = [
 export type Domain = {
   id: string;
   name: string;
-  level: number; // índice en COMM_LEVELS alcanzado actualmente (0-3)
+  level: number; // índice en LEVELS alcanzado actualmente (0-3)
   progress: number; // % hacia el siguiente nivel
-  descriptors: Record<CommLevel, string[]>;
+  descriptors: Record<Level, string[]>;
   evidence: string[];
 };
 
@@ -225,9 +226,9 @@ export const competencyDomains: Domain[] = [
     level: 2,
     progress: 20,
     descriptors: {
-      Inicial: ["Da una actualización de estado básica cuando se le pide", "Entiende preguntas sencillas sobre sus tareas"],
+      "Entry level": ["Da una actualización de estado básica cuando se le pide", "Entiende preguntas sencillas sobre sus tareas"],
       Junior: ["Presenta una actualización estructurada de ayer / hoy / bloqueos", "Pide aclaraciones con cortesía"],
-      "Semi Senior": ["Mantiene las actualizaciones concisas y responde directamente a las preguntas", "Plantea riesgos de forma proactiva en grupo"],
+      Mid: ["Mantiene las actualizaciones concisas y responde directamente a las preguntas", "Plantea riesgos de forma proactiva en grupo"],
       Senior: ["Facilita reuniones y orienta la discusión hacia decisiones", "Resume acuerdos y responsables al final"],
     },
     evidence: ["Revisión del Sprint 05 — juego de roles de stand-up", "Stand-up grabado, 28 oct."],
@@ -238,9 +239,9 @@ export const competencyDomains: Domain[] = [
     level: 2,
     progress: 45,
     descriptors: {
-      Inicial: ["Escribe mensajes cortos con errores frecuentes", "Depende de traductores para textos largos"],
+      "Entry level": ["Escribe mensajes cortos con errores frecuentes", "Depende de traductores para textos largos"],
       Junior: ["Escribe mensajes de estado y tickets claros", "Usa un registro cortés y consistente"],
-      "Semi Senior": ["Estructura las actualizaciones con el mensaje clave primero", "Adapta la extensión y el detalle a la audiencia"],
+      Mid: ["Estructura las actualizaciones con el mensaje clave primero", "Adapta la extensión y el detalle a la audiencia"],
       Senior: ["Escribe RFC y propuestas persuasivas", "Impulsa decisiones de forma asíncrona entre zonas horarias"],
     },
     evidence: ["Evaluación del Sprint 06 — claridad 4/5", "Borradores de resúmenes semanales"],
@@ -251,9 +252,9 @@ export const competencyDomains: Domain[] = [
     level: 1,
     progress: 64,
     descriptors: {
-      Inicial: ["Aprueba o pide cambios con comentarios mínimos"],
+      "Entry level": ["Aprueba o pide cambios con comentarios mínimos"],
       Junior: ["Deja comentarios específicos en líneas de código", "Agradece a quienes revisan y reconoce sus comentarios"],
-      "Semi Senior": ["Distingue los problemas bloqueantes de las sugerencias", "Justifica sus pedidos con evidencia y ofrece alternativas"],
+      Mid: ["Distingue los problemas bloqueantes de las sugerencias", "Justifica sus pedidos con evidencia y ofrece alternativas"],
       Senior: ["Hace mentoría a través de la revisión, enseñando en lugar de corregir", "Resuelve desacuerdos y documenta las decisiones"],
     },
     evidence: ["Sprint 07 en curso", "Respuesta a una crítica — entregada"],
@@ -264,9 +265,9 @@ export const competencyDomains: Domain[] = [
     level: 1,
     progress: 50,
     descriptors: {
-      Inicial: ["Nombra tecnologías y describe funciones básicas"],
+      "Entry level": ["Nombra tecnologías y describe funciones básicas"],
       Junior: ["Explica paso a paso cómo funciona su propio código"],
-      "Semi Senior": ["Explica por qué eligió una solución, con sus ventajas y desventajas", "Usa analogías con oyentes menos técnicos"],
+      Mid: ["Explica por qué eligió una solución, con sus ventajas y desventajas", "Usa analogías con oyentes menos técnicos"],
       Senior: ["Explica la arquitectura del sistema y sus implicaciones a largo plazo", "Ajusta la profundidad en tiempo real según la audiencia"],
     },
     evidence: ["Explicación del incidente del Sprint 04", "Laboratorio de entrevistas — análisis de renderizado en React"],
@@ -277,9 +278,9 @@ export const competencyDomains: Domain[] = [
     level: 1,
     progress: 15,
     descriptors: {
-      Inicial: ["Entiende los pedidos de los product managers"],
+      "Entry level": ["Entiende los pedidos de los product managers"],
       Junior: ["Confirma requisitos y hace preguntas básicas de alcance"],
-      "Semi Senior": ["Negocia alcance y plazos con diplomacia", "Traduce el riesgo técnico a impacto de negocio"],
+      Mid: ["Negocia alcance y plazos con diplomacia", "Traduce el riesgo técnico a impacto de negocio"],
       Senior: ["Influye en las decisiones del roadmap", "Gestiona expectativas con la alta dirección"],
     },
     evidence: ["Planificado para el Sprint 09"],
@@ -290,9 +291,9 @@ export const competencyDomains: Domain[] = [
     level: 1,
     progress: 30,
     descriptors: {
-      Inicial: ["Se presenta y habla de su trayectoria con preparación previa"],
+      "Entry level": ["Se presenta y habla de su trayectoria con preparación previa"],
       Junior: ["Responde preguntas conductuales comunes con ejemplos"],
-      "Semi Senior": ["Usa la estructura STAR con fluidez y maneja preguntas de seguimiento", "Piensa en voz alta con claridad en rondas técnicas"],
+      Mid: ["Usa la estructura STAR con fluidez y maneja preguntas de seguimiento", "Piensa en voz alta con claridad en rondas técnicas"],
       Senior: ["Lidera la conversación y negocia ofertas con seguridad"],
     },
     evidence: ["Laboratorio de entrevistas — 3 simulaciones completadas"],
@@ -300,10 +301,10 @@ export const competencyDomains: Domain[] = [
 ];
 
 export const pathway = [
-  { level: "Inicial" as CommLevel, status: "complete", period: "Mar. — may. 2026", focus: "Inglés cotidiano en el trabajo, presentaciones, actualizaciones de estado básicas" },
-  { level: "Junior" as CommLevel, status: "current", period: "Jun. 2026 — hoy", focus: "Actualizaciones estructuradas, redacción de tickets, bases de code review, explicación de incidentes" },
-  { level: "Semi Senior" as CommLevel, status: "next", period: "Est. feb. 2027", focus: "Ventajas y desventajas técnicas, facilitación, negociación con stakeholders, fluidez en entrevistas" },
-  { level: "Senior" as CommLevel, status: "future", period: "Est. 4.º trim. 2027", focus: "RFC, influir en decisiones, mentoría, presencia de liderazgo" },
+  { level: "Entry level" as Level, status: "complete", period: "Mar. — may. 2026", focus: "Inglés cotidiano en el trabajo, presentaciones, actualizaciones de estado básicas" },
+  { level: "Junior" as Level, status: "current", period: "Jun. 2026 — hoy", focus: "Actualizaciones estructuradas, redacción de tickets, bases de code review, explicación de incidentes" },
+  { level: "Mid" as Level, status: "next", period: "Est. feb. 2027", focus: "Ventajas y desventajas técnicas, facilitación, negociación con stakeholders, fluidez en entrevistas" },
+  { level: "Senior" as Level, status: "future", period: "Est. 4.º trim. 2027", focus: "RFC, influir en decisiones, mentoría, presencia de liderazgo" },
 ];
 
 export type Track = "frontend" | "backend" | "fullstack";

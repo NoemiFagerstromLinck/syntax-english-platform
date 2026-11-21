@@ -68,7 +68,7 @@ function SidebarFooter() {
         <span className="min-w-0">
           <span className="block truncate text-sm font-medium text-foreground">{student.name}</span>
           <span className="block truncate text-xs text-muted-foreground">
-            {student.technical.seniority} · {student.english.cefr} · {student.communication.current}
+            {student.technical.seniority} frontend · English {student.communication.current}
           </span>
         </span>
       </Link>

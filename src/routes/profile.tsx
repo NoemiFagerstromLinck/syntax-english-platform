@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { MapPin, Clock, Languages, Pencil } from "lucide-react";
 import { Meter, PageHeader, SectionTitle, Tag } from "@/components/syntax/primitives";
-import { COMM_LEVELS, student } from "@/data/platform";
+import { LEVELS, student } from "@/data/platform";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/profile")({
@@ -19,8 +19,7 @@ export const Route = createFileRoute("/profile")({
   component: Profile,
 });
 
-const SENIORITY = ["Intern", "Junior", "Mid-level", "Senior", "Staff+"];
-const CEFR = ["A1", "A2", "B1", "B2", "C1", "C2"];
+const SENIORITY = ["Entry level", "Junior", "Mid", "Senior", "Staff+"];
 
 function Scale({ steps, current, tone }: { steps: string[]; current: string; tone: "tech" | "lang" | "comm" }) {
   const idx = steps.indexOf(current);
@@ -33,9 +32,9 @@ function Scale({ steps, current, tone }: { steps: string[]; current: string; ton
           <span key={s} className={cn("h-1.5 flex-1 rounded-full", i <= idx ? fill : "bg-secondary")} />
         ))}
       </div>
-      <div className="mt-2 flex justify-between font-mono text-[10px] text-muted-foreground">
+      <div className="mt-2 flex justify-between gap-1 font-mono text-[9px] leading-none text-muted-foreground">
         {steps.map((s) => (
-          <span key={s} className={s === current ? text : ""}>{s}</span>
+          <span key={s} className={cn("truncate", s === current && text)}>{s}</span>
         ))}
       </div>
     </div>
@@ -84,16 +83,16 @@ function Profile() {
         </div>
         <div className="bg-surface p-6">
           <p className="eyebrow text-lang">English proficiency</p>
-          <p className="mt-3 font-display text-3xl font-semibold text-foreground">CEFR {student.english.cefr}</p>
+          <p className="mt-3 font-display text-3xl font-semibold text-foreground">{student.english.level}</p>
           <p className="mt-1 text-sm text-muted-foreground">{student.english.label} · assessed {student.english.lastAssessed}</p>
-          <div className="mt-6"><Scale steps={CEFR} current={student.english.cefr} tone="lang" /></div>
-          <p className="mt-5 text-xs leading-relaxed text-muted-foreground">General language ability, measured with a standardised placement assessment.</p>
+          <div className="mt-6"><Scale steps={[...LEVELS]} current={student.english.level} tone="lang" /></div>
+          <p className="mt-5 text-xs leading-relaxed text-muted-foreground">General English ability, mapped to the same ladder as your technical career instead of exam grades.</p>
         </div>
         <div className="bg-surface p-6">
           <p className="eyebrow text-comm">Communication competency</p>
           <p className="mt-3 font-display text-3xl font-semibold text-foreground">{student.communication.current}</p>
           <p className="mt-1 text-sm text-muted-foreground">{student.communication.progressToNext}% toward {student.communication.target}</p>
-          <div className="mt-6"><Scale steps={COMM_LEVELS} current={student.communication.current} tone="comm" /></div>
+          <div className="mt-6"><Scale steps={[...LEVELS]} current={student.communication.current} tone="comm" /></div>
           <p className="mt-5 text-xs leading-relaxed text-muted-foreground">How effectively you use English in real engineering situations, assessed at each sprint review.</p>
         </div>
       </section>
