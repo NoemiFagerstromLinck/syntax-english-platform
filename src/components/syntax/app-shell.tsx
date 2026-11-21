@@ -3,6 +3,7 @@ import { useState, type ReactNode } from "react";
 import { LayoutGrid, Layers, Radar, MessagesSquare, MonitorPlay, UserRound, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { currentSprint, student } from "@/data/platform";
+import { ThemeToggle } from "./theme";
 import { Meter } from "./primitives";
 import { cn } from "@/lib/utils";
 
@@ -58,6 +59,10 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
 function SidebarFooter() {
   return (
     <div className="space-y-4">
+      <div className="flex items-center justify-between px-1">
+        <span className="text-xs text-muted-foreground">Theme</span>
+        <ThemeToggle />
+      </div>
       <Link to="/sprint" className="block rounded-xl border border-sidebar-border p-3 transition-colors hover:border-comm/40">
         <p className="eyebrow">{currentSprint.code} · Day {currentSprint.currentDay}/{currentSprint.totalDays}</p>
         <p className="mt-1 text-sm font-medium text-foreground">{currentSprint.title}</p>
@@ -95,21 +100,24 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <div className="sticky top-0 z-30 flex items-center justify-between border-b border-sidebar-border bg-sidebar/95 px-4 py-3 backdrop-blur lg:hidden">
         <Brand />
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <button className="grid size-9 place-items-center rounded-lg border border-hairline text-foreground" aria-label="Open navigation">
-              <Menu className="size-4" />
-            </button>
-          </SheetTrigger>
-          <SheetContent side="left" className="flex w-72 flex-col justify-between border-sidebar-border bg-sidebar">
-            <div className="space-y-8">
-              <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <Brand />
-              <NavList onNavigate={() => setOpen(false)} />
-            </div>
-            <SidebarFooter />
-          </SheetContent>
-        </Sheet>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <button className="grid size-9 place-items-center rounded-lg border border-hairline text-foreground" aria-label="Open navigation">
+                <Menu className="size-4" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="flex w-72 flex-col justify-between border-sidebar-border bg-sidebar">
+              <div className="space-y-8">
+                <SheetTitle className="sr-only">Navigation</SheetTitle>
+                <Brand />
+                <NavList onNavigate={() => setOpen(false)} />
+              </div>
+              <SidebarFooter />
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
 
       <main id="main" className="lg:pl-64">

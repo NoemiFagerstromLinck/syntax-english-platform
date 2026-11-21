@@ -1,8 +1,12 @@
 # Syntax — English for Engineers
 
+Live: https://noemifagerstromlinck.github.io/syntax-english-platform/
+
 Professional English development workspace for IT professionals: student dashboard, sprint workspace, competency profile, tutor sessions, interview lab and student profile.
 
 Dark-first TanStack Start + React + Tailwind prototype. All content lives in `src/data/platform.ts` as fictional sample data; there is no auth, database or external integration yet.
+
+Two themes ship together, switched from the sidebar: **Obsidian** (graphite + lavender) and **Paper** (bone + ink, no colour). The choice is stored in `localStorage`.
 
 ## Local development
 
