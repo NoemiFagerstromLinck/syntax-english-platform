@@ -122,7 +122,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </div>
 
       <main id="main" className="lg:pl-64">
-        <div className="bg-aurora">
+        <div>
           <div className="mx-auto max-w-6xl px-5 py-8 md:px-10 md:py-12">{children}</div>
         </div>
       </main>

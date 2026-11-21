@@ -79,61 +79,58 @@
   color-scheme: dark;
   --radius: 0.625rem;
 
-  /* Obsidian: graphite surfaces, lavender accent, muted semantic axes. */
-  --background: #15151b;
-  --foreground: #e0dfe7;
-  --surface: #202029;
-  --surface-raised: #2c2c38;
-  --hairline: #343440;
+  /* Obsidian: near-black surfaces, electric accents, no background gradient. */
+  --background: #0d0d12;
+  --foreground: #e6e4ee;
+  --surface: #16161d;
+  --surface-raised: #21212b;
+  --hairline: #2b2b37;
 
-  --card: #202029;
-  --card-foreground: #e0dfe7;
-  --popover: #262632;
-  --popover-foreground: #e0dfe7;
-  --primary: #bea6ff;
-  --primary-foreground: #160f26;
-  --secondary: #262632;
-  --secondary-foreground: #dedde5;
-  --muted: #24242e;
-  --muted-foreground: #9b99a7;
-  --accent: #2c2c38;
-  --accent-foreground: #e7e6ee;
-  --destructive: #e07a72;
-  --destructive-foreground: #1b1010;
-  --border: #343440;
-  --input: #3b3b48;
-  --ring: #bea6ff;
+  --card: #16161d;
+  --card-foreground: #e6e4ee;
+  --popover: #1c1c24;
+  --popover-foreground: #e6e4ee;
+  --primary: #b47cff;
+  --primary-foreground: #120a20;
+  --secondary: #1d1d27;
+  --secondary-foreground: #e2e0ea;
+  --muted: #191921;
+  --muted-foreground: #a19fae;
+  --accent: #26262f;
+  --accent-foreground: #eae8f2;
+  --destructive: #ff6b6b;
+  --destructive-foreground: #170808;
+  --border: #2b2b37;
+  --input: #33333f;
+  --ring: #b47cff;
 
-  --tech: #7fb5ff;
-  --tech-soft: rgb(127 181 255 / 18%);
-  --lang: #f7b95c;
-  --lang-soft: rgb(247 185 92 / 18%);
-  --comm: #bea6ff;
-  --comm-soft: rgb(190 166 255 / 18%);
-  --positive: #4ade9b;
-  --attention: #ff9e66;
+  --tech: #5cc4ff;
+  --tech-soft: rgb(92 196 255 / 20%);
+  --lang: #ffc247;
+  --lang-soft: rgb(255 194 71 / 20%);
+  --comm: #b47cff;
+  --comm-soft: rgb(180 124 255 / 22%);
+  --positive: #34f5a0;
+  --attention: #ff9057;
 
   --chart-1: var(--comm);
   --chart-2: var(--tech);
   --chart-3: var(--lang);
-  --chart-4: #a98bff;
+  --chart-4: #d07bff;
   --chart-5: var(--attention);
 
-  --sidebar: #101016;
-  --sidebar-foreground: #dcdbe4;
+  --sidebar: #08080c;
+  --sidebar-foreground: #dedce8;
   --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: #1d1d26;
-  --sidebar-accent-foreground: #eceaf3;
-  --sidebar-border: #262630;
+  --sidebar-accent: #1a1a23;
+  --sidebar-accent-foreground: #efeef5;
+  --sidebar-border: #23232d;
   --sidebar-ring: var(--ring);
 
-  --grid-line: rgb(255 255 255 / 3.5%);
-  --gradient-aurora:
-    radial-gradient(60% 80% at 0% 0%, rgb(190 166 255 / 18%), transparent 60%),
-    radial-gradient(50% 70% at 100% 0%, rgb(127 181 255 / 12%), transparent 60%);
-  --gradient-lesson: linear-gradient(135deg, #242434, #1c1c26 60%, #2a2436);
-  --shadow-panel: 0 1px 0 0 rgb(255 255 255 / 4%) inset, 0 20px 40px -24px rgb(0 0 0 / 60%);
+  --grid-line: rgb(255 255 255 / 4%);
+  --gradient-lesson: linear-gradient(135deg, #221a33, #121219 60%, #2a1d3d);
+  --shadow-panel: 0 1px 0 0 rgb(255 255 255 / 4%) inset, 0 24px 48px -28px rgb(0 0 0 / 80%);
 }
 
 /* Paper: bone background, ink foreground, no hue. Every axis is separated by tone, not colour. */
@@ -189,9 +186,6 @@
   --sidebar-ring: #201f1b;
 
   --grid-line: rgb(27 26 23 / 5%);
-  --gradient-aurora:
-    radial-gradient(60% 80% at 0% 0%, rgb(32 31 27 / 4%), transparent 60%),
-    radial-gradient(50% 70% at 100% 0%, rgb(32 31 27 / 3%), transparent 60%);
   --gradient-lesson: linear-gradient(135deg, #efece4, #f7f5ef 60%, #e9e5db);
   --shadow-panel: 0 1px 0 0 rgb(255 255 255 / 60%) inset, 0 18px 36px -26px rgb(27 26 23 / 25%);
 }
@@ -243,10 +237,6 @@
   border: 1px solid var(--hairline);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-panel);
-}
-
-@utility bg-aurora {
-  background-image: var(--gradient-aurora);
 }
 
 @utility bg-lesson {
