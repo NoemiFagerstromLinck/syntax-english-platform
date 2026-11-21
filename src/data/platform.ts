@@ -56,15 +56,47 @@ export const currentSprint = {
   title: "Comunicación en code reviews",
   scenario: "Explicar ventajas y desventajas técnicas y expresar desacuerdo de forma constructiva en revisiones de pull requests.",
   start: "16 nov.",
-  end: "29 nov. 2026",
-  totalDays: 14,
-  currentDay: 6,
+  end: "20 nov. 2026",
+  totalDays: 5,
+  currentDay: 3,
   progress: 46,
   outcomes: [
     "Escribir comentarios de revisión que distingan los problemas bloqueantes de las sugerencias",
     "Justificar una decisión técnica con un lenguaje claro de causa y efecto",
     "Responder a críticas sin sonar a la defensiva",
   ],
+};
+
+export type SprintDayStatus = "done" | "current" | "todo";
+
+/** Weekly Scrum plan: planning on Monday, review and retrospective on Friday. */
+export const sprintPlan: {
+  weekLabel: string;
+  plannedTime: string;
+  focusedTime: string;
+  completed: number;
+  total: number;
+  days: { day: string; date: string; title: string; detail: string; duration: string; status: SprintDayStatus }[];
+} = {
+  weekLabel: "Week 1 · Learning schedule",
+  plannedTime: "2 h 10 min",
+  focusedTime: "45 min",
+  completed: 2,
+  total: 5,
+  days: [
+    { day: "Mon", date: "16", title: "Sprint planning", detail: "Set the sprint goal and the vocabulary you need.", duration: "20 min", status: "done" },
+    { day: "Tue", date: "17", title: "Technical understanding", detail: "Identify blocking issues vs. suggestions in a PR thread.", duration: "25 min", status: "done" },
+    { day: "Wed", date: "18", title: "Communication practice", detail: "Rewrite review comments in your own words.", duration: "25 min", status: "current" },
+    { day: "Thu", date: "19", title: "Interview preparation", detail: "Rehearse follow-up questions about your decisions.", duration: "30 min", status: "todo" },
+    { day: "Fri", date: "20", title: "Sprint review", detail: "1:1 review, feedback and retrospective.", duration: "30 min", status: "todo" },
+  ],
+};
+
+export const sprintDeliverable = {
+  title: "Reescribe tres comentarios reales de PR",
+  detail: "Elige tres comentarios de tu último pull request y reescríbelos con intención explícita, evidencia y una alternativa concreta.",
+  meta: "Escrito · 3 comentarios · revisión de Daniel",
+  due: "Vie., 20 nov.",
 };
 
 export type Task = { id: string; title: string; kind: "Video" | "Ejercicio" | "Tarea" | "Lectura"; duration: string; status: "done" | "in-progress" | "todo"; due?: string };
@@ -110,30 +142,30 @@ export const rewriteExercise = {
 };
 
 export const assignments = [
-  { id: "a1", title: "Reescribe tres comentarios reales de PR", deliverable: "Escrito · 3 comentarios", due: "24 nov.", status: "Sin empezar", reviewer: "Daniel Okafor" },
+  { id: "a1", title: "Reescribe tres comentarios reales de PR", deliverable: "Escrito · 3 comentarios", due: "20 nov.", status: "Sin empezar", reviewer: "Daniel Okafor" },
   { id: "a2", title: "Graba una explicación de 2 minutos sobre una decisión de diseño", deliverable: "Audio · 2 min", due: "26 nov.", status: "Sin empezar", reviewer: "Daniel Okafor" },
   { id: "a3", title: "Responde a una crítica sobre tu propio PR", deliverable: "Escrito · respuesta en hilo", due: "21 nov.", status: "Entregada", reviewer: "Priya Raman" },
   { id: "a4", title: "Nota de retrospectiva del Sprint 06", deliverable: "Escrito · 150 palabras", due: "15 nov.", status: "Revisada", reviewer: "Daniel Okafor" },
 ];
 
 export const upcomingSessions = [
-  { id: "s1", date: "Mar., 24 nov.", time: "18:00 – 19:00 WET", tutor: "Daniel Okafor", type: "Revisión intermedia del Sprint 07", focus: "Reescritura de comentarios de revisión y ajuste del tono" },
-  { id: "s2", date: "Jue., 26 nov.", time: "18:00 – 18:45 WET", tutor: "Priya Raman", type: "Ensayo de entrevista", focus: "Ronda conductual de frontend: conflictos y responsabilidad" },
-  { id: "s3", date: "Lun., 30 nov.", time: "18:00 – 19:00 WET", tutor: "Daniel Okafor", type: "Revisión de cierre del Sprint 07", focus: "Evaluación y objetivos del Sprint 08" },
+  { id: "s1", date: "Vie., 20 nov.", time: "18:00 – 19:00 WET", tutor: "Daniel Okafor", type: "Sprint 07 review & retrospective", focus: "Cierre del sprint: feedback de los comentarios reescritos y objetivos del Sprint 08" },
+  { id: "s2", date: "Jue., 26 nov.", time: "18:00 – 18:45 WET", tutor: "Priya Raman", type: "Sprint 08 · ensayo de entrevista", focus: "Ronda conductual de frontend: conflictos y responsabilidad" },
+  { id: "s3", date: "Lun., 30 nov.", time: "18:00 – 19:00 WET", tutor: "Daniel Okafor", type: "Sprint 09 planning", focus: "Planificación del siguiente sprint y revisión de objetivos" },
 ];
 
 export const nextSession = {
   ...upcomingSessions[0]!,
   agenda: [
     "Repasar tus tres comentarios de PR reescritos",
-    "Juego de roles en vivo: un ingeniero senior objeta tu sugerencia",
-    "Revisión de pronunciación: acento en sustantivos técnicos compuestos",
-    "Acordar el enfoque para la segunda mitad del sprint",
+    "Feedback del sprint: claridad, tono y estructura",
+    "Retrospectiva: qué funcionó y qué cambiamos en el Sprint 08",
+    "Acordar los objetivos del Sprint 08",
   ],
   prep: [
     { id: "p1", label: "Entrega la tarea de reescritura de PR" },
     { id: "p2", label: "Mira «Cómo expresar desacuerdo con un ingeniero senior»" },
-    { id: "p3", label: "Anota un hilo de revisión real de tu trabajo de esta semana" },
+    { id: "p3", label: "Anota una decisión del sprint que quieras revisar en la retro" },
   ],
 };
 
@@ -443,4 +475,59 @@ export const interviewHistory = [
   { id: "h1", title: "Análisis técnico: renderizado en React", track: "Frontend", date: "12 nov.", technical: 4, communication: 3 },
   { id: "h2", title: "Ronda conductual: conflicto en un code review", track: "Frontend", date: "3 nov.", technical: 4, communication: 3 },
   { id: "h3", title: "Ronda de producto: lanzar una funcionalidad de punta a punta", track: "Full-stack", date: "22 oct.", technical: 3, communication: 2 },
+];
+
+/** Written practice: explain real code in English instead of solving it. */
+export const learningPad = {
+  label: "Learning pad · JavaScript",
+  language: "JavaScript",
+  intro: "Read the fragment and explain it in your own words. You already know how to code; this trains the explanation.",
+  code: `const activeUsers = users.filter(
+  user => user.isActive
+);`,
+  question: "What does this code do, and why would you use filter instead of map?",
+  placeholder: "This code creates a new array…",
+  reference:
+    "It builds a new array containing only the users whose isActive flag is true. filter is the right choice because we want a subset of the original array; map would transform every user and return the same number of items, which changes the meaning of the result.",
+  note: "Language practice only. It does not replace your tutor's assessment.",
+};
+
+export type Flashcard = {
+  term: string;
+  conceptual: string;
+  contextual: string;
+  productive: string;
+  interview: string;
+};
+
+/** Active recall deck: concept, workplace context, production and interview follow-up. */
+export const flashcards: Flashcard[] = [
+  {
+    term: "Scalability",
+    conceptual: "How well a system keeps working when users, data or traffic grow.",
+    contextual: "Used when discussing growth, capacity planning and architecture trade-offs.",
+    productive: "Our API is not scalable under peak traffic because every request hits the same database.",
+    interview: "How would you make a web application more scalable?",
+  },
+  {
+    term: "Idempotency",
+    conceptual: "An operation that produces the same result whether it runs once or many times.",
+    contextual: "Comes up in payments, webhooks and retry logic.",
+    productive: "The endpoint is idempotent because duplicate requests are ignored through an idempotency key.",
+    interview: "How do you guarantee that a payment webhook is processed only once?",
+  },
+  {
+    term: "Race condition",
+    conceptual: "A bug where the outcome depends on the unpredictable order of concurrent operations.",
+    contextual: "Used when debugging totals, inventory or shared state under load.",
+    productive: "We had a race condition because two requests updated the same record at the same time.",
+    interview: "Tell me about a bug caused by concurrency. How did you fix it?",
+  },
+  {
+    term: "Technical debt",
+    conceptual: "The future cost of shipping a quick solution instead of the cleaner one.",
+    contextual: "Used in estimations, refactor proposals and roadmap conversations.",
+    productive: "We are paying technical debt on the billing module, which slows down every new feature.",
+    interview: "How do you decide when to pay down technical debt?",
+  },
 ];

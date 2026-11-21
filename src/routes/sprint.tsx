@@ -216,7 +216,7 @@ function Exercises() {
                 toast("Write your version first", { description: "Then compare it with the model answer." });
                 return;
               }
-              toast.success("Saved for tutor review", { description: "Daniel will comment before Tuesday's session." });
+              toast.success("Saved for tutor review", { description: "Daniel will comment before Friday's sprint review." });
             }}
             className="inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground hover:opacity-90"
           >

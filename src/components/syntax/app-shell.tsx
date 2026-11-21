@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import { LayoutGrid, Layers, Radar, MessagesSquare, MonitorPlay, UserRound, Menu } from "lucide-react";
+import { LayoutGrid, Layers, NotebookPen, Radar, MessagesSquare, MonitorPlay, UserRound, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { currentSprint, student } from "@/data/platform";
 import { ThemeToggle } from "./theme";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const nav = [
   { to: "/", label: "Dashboard", icon: LayoutGrid },
   { to: "/sprint", label: "Sprint Workspace", icon: Layers },
+  { to: "/learning-pad", label: "Learning Pad", icon: NotebookPen },
   { to: "/competencies", label: "Competency Profile", icon: Radar },
   { to: "/sessions", label: "Tutor Sessions", icon: MessagesSquare },
   { to: "/interview-lab", label: "Interview Lab", icon: MonitorPlay },
