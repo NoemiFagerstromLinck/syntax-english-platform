@@ -90,8 +90,8 @@
   --card-foreground: #e0dfe7;
   --popover: #262632;
   --popover-foreground: #e0dfe7;
-  --primary: #b0a1df;
-  --primary-foreground: #17141f;
+  --primary: #bea6ff;
+  --primary-foreground: #160f26;
   --secondary: #262632;
   --secondary-foreground: #dedde5;
   --muted: #24242e;
@@ -102,21 +102,21 @@
   --destructive-foreground: #1b1010;
   --border: #343440;
   --input: #3b3b48;
-  --ring: #b0a1df;
+  --ring: #bea6ff;
 
-  --tech: #8fb2e8;
-  --tech-soft: rgb(143 178 232 / 15%);
-  --lang: #e3b778;
-  --lang-soft: rgb(227 183 120 / 15%);
-  --comm: #b0a1df;
-  --comm-soft: rgb(176 161 223 / 15%);
-  --positive: #8fd3a8;
-  --attention: #e8a97e;
+  --tech: #7fb5ff;
+  --tech-soft: rgb(127 181 255 / 18%);
+  --lang: #f7b95c;
+  --lang-soft: rgb(247 185 92 / 18%);
+  --comm: #bea6ff;
+  --comm-soft: rgb(190 166 255 / 18%);
+  --positive: #4ade9b;
+  --attention: #ff9e66;
 
   --chart-1: var(--comm);
   --chart-2: var(--tech);
   --chart-3: var(--lang);
-  --chart-4: #9d8fd0;
+  --chart-4: #a98bff;
   --chart-5: var(--attention);
 
   --sidebar: #101016;
@@ -130,8 +130,8 @@
 
   --grid-line: rgb(255 255 255 / 3.5%);
   --gradient-aurora:
-    radial-gradient(60% 80% at 0% 0%, rgb(176 161 223 / 12%), transparent 60%),
-    radial-gradient(50% 70% at 100% 0%, rgb(143 178 232 / 8%), transparent 60%);
+    radial-gradient(60% 80% at 0% 0%, rgb(190 166 255 / 18%), transparent 60%),
+    radial-gradient(50% 70% at 100% 0%, rgb(127 181 255 / 12%), transparent 60%);
   --gradient-lesson: linear-gradient(135deg, #242434, #1c1c26 60%, #2a2436);
   --shadow-panel: 0 1px 0 0 rgb(255 255 255 / 4%) inset, 0 20px 40px -24px rgb(0 0 0 / 60%);
 }

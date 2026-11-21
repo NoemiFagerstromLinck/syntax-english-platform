@@ -42,7 +42,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
             aria-current={active ? "page" : undefined}
             className={cn(
               "group relative flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-              active ? "bg-sidebar-accent text-sidebar-accent-foreground" : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-foreground",
+              active ? "bg-comm-soft text-sidebar-accent-foreground" : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-foreground",
             )}
           >
             {active ? <span className="absolute inset-y-2 left-0 w-0.5 rounded-full bg-comm" aria-hidden /> : null}

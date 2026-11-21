@@ -60,7 +60,10 @@ function Dashboard() {
               <div key={level} className="min-w-0">
                 <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
                   <div
-                    className={cn("h-full rounded-full transition-[width] duration-700 ease-out", complete || current ? "bg-comm" : "bg-transparent")}
+                    className={cn(
+                      "h-full rounded-full transition-[width] duration-700 ease-out",
+                      complete ? "bg-positive" : current ? "bg-comm" : "bg-transparent",
+                    )}
                     style={{ width: complete ? "100%" : current ? `${student.communication.progressToNext}%` : "0%" }}
                   />
                 </div>

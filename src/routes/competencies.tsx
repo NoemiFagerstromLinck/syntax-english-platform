@@ -74,7 +74,7 @@ function Competencies() {
                       return (
                         <td key={l} className="px-3 py-3">
                           <div className="h-2 overflow-hidden rounded-full bg-secondary" aria-label={`${l}: ${reached ? "achieved" : current ? `${d.progress}% in progress` : "not started"}`}>
-                            <div className={cn("h-full rounded-full", reached ? "w-full bg-comm" : current ? "bg-comm/50" : "w-0")} style={current ? { width: `${d.progress}%` } : undefined} />
+                            <div className={cn("h-full rounded-full", reached ? "w-full bg-positive" : current ? "bg-comm/60" : "w-0")} style={current ? { width: `${d.progress}%` } : undefined} />
                           </div>
                         </td>
                       );
