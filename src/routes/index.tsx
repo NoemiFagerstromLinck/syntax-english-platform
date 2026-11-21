@@ -20,9 +20,9 @@ export const Route = createFileRoute("/")({
 
 const kindIcon: Record<Task["kind"], typeof PlayCircle> = {
   Video: PlayCircle,
-  Exercise: PenLine,
-  Assignment: FileText,
-  Reading: BookOpen,
+  Ejercicio: PenLine,
+  Tarea: FileText,
+  Lectura: BookOpen,
 };
 
 function StatusIcon({ status }: { status: Task["status"] }) {

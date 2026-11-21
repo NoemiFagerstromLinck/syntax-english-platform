@@ -1,4 +1,17 @@
-# Welcome to your Lovable project
+# Syntax — English for Engineers
+
+Professional English development workspace for IT professionals: student dashboard, sprint workspace, competency profile, tutor sessions, interview lab and student profile.
+
+Dark-first TanStack Start + React + Tailwind prototype. All content lives in `src/data/platform.ts` as fictional sample data; there is no auth, database or external integration yet.
+
+## Local development
+
+```sh
+bun install
+bun run dev      # http://localhost:5173
+bun run build
+bun run test
+```
 
 This project was built with [Lovable](https://lovable.dev).
 
