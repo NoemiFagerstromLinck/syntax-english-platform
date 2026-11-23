@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { ThemeToggle } from "@/components/syntax/theme";
+import { Logo } from "@/components/syntax/logo";
 import { LEVELS } from "@/data/platform";
 
 export const Route = createFileRoute("/")({
@@ -32,13 +33,10 @@ const week = [
   { day: "Vie", label: "Review", state: "todo" },
 ];
 
-function Brand() {
+function Brand({ showTagline = false }: { showTagline?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-2.5" aria-label="dCoder, inicio">
-      <span className="grid size-8 place-items-center rounded-lg border border-comm/40 bg-comm-soft font-mono text-sm font-semibold text-comm" aria-hidden>
-        {"</>"}
-      </span>
-      <span className="font-display text-lg font-semibold tracking-tight text-foreground">dCoder</span>
+    <Link to="/" className="flex items-center" aria-label="dCoder, inicio">
+      <Logo showTagline={showTagline} />
     </Link>
   );
 }
@@ -325,8 +323,7 @@ function Landing() {
       <footer className="border-t border-hairline">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between md:px-10">
           <div>
-            <Brand />
-            <p className="mt-2 text-xs text-muted-foreground">Inglés técnico para developers.</p>
+            <Brand showTagline />
           </div>
           <nav aria-label="Pie de página" className="flex flex-wrap gap-x-6 gap-y-2">
             {navLinks.map((link) => (

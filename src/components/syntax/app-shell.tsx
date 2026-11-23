@@ -4,6 +4,7 @@ import { LayoutGrid, Layers, NotebookPen, Radar, MessagesSquare, MonitorPlay, Us
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { currentSprint, student } from "@/data/platform";
 import { ThemeToggle } from "./theme";
+import { Logo } from "./logo";
 import { Meter } from "./primitives";
 import { cn } from "@/lib/utils";
 
@@ -19,11 +20,8 @@ const nav = [
 
 function Brand() {
   return (
-    <Link to="/dashboard" className="flex items-center gap-2.5 rounded-md">
-      <span className="grid size-8 place-items-center rounded-lg border border-comm/40 bg-comm-soft font-mono text-sm font-semibold text-comm" aria-hidden>
-        {"</>"}
-      </span>
-      <span className="font-display text-lg font-semibold tracking-tight text-foreground">dCoder</span>
+    <Link to="/dashboard" className="flex items-center rounded-md" aria-label="dCoder">
+      <Logo />
     </Link>
   );
 }
