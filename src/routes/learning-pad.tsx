@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/learning-pad")({
   head: () => ({
     meta: [
-      { title: "Learning Pad — Syntax" },
+      { title: "Learning Pad — dCoder" },
       { name: "description", content: "Explain real code in English and review technical concepts with active recall and spaced repetition." },
-      { property: "og:title", content: "Learning Pad — Syntax" },
+      { property: "og:title", content: "Learning Pad — dCoder" },
       { property: "og:description", content: "Written explanation practice and spaced-repetition flashcards for technical English." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

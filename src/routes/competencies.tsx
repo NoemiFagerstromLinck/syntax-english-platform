@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/competencies")({
   head: () => ({
     meta: [
-      { title: "Competency Profile — Syntax" },
+      { title: "Competency Profile — dCoder" },
       { name: "description", content: "Progression through Entry level, Junior, Mid and Senior professional communication competencies." },
-      { property: "og:title", content: "Competency Profile — Syntax" },
+      { property: "og:title", content: "Competency Profile — dCoder" },
       { property: "og:description", content: "See how your workplace English communication develops from Foundation to Senior." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

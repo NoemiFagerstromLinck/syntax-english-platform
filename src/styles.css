@@ -9,7 +9,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Syntax design system — dark-first, charcoal surfaces, muted accents.
+ * dCoder design system — dark-first, charcoal surfaces, muted accents.
  * Three semantic axes keep skill dimensions visually distinct everywhere:
  *   --tech  technical seniority (steel blue)
  *   --lang  English proficiency (muted amber)

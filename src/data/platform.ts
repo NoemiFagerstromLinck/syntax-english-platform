@@ -1,4 +1,4 @@
-// Datos de ejemplo ficticios para el prototipo de Syntax. Reemplazar por fuentes reales más adelante.
+// Datos de ejemplo ficticios para el prototipo de dCoder. Reemplazar por fuentes reales más adelante.
 // La interfaz está en español; el material de práctica (frases, respuestas modelo, preguntas de entrevista) se mantiene en inglés.
 
 /** Career ladder used for both technical seniority and English communication. */

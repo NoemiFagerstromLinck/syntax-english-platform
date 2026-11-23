@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/sprint")({
   head: () => ({
     meta: [
-      { title: "Sprint Workspace — Syntax" },
+      { title: "Sprint Workspace — dCoder" },
       { name: "description", content: "Learning materials, short video lessons, contextualised exercises and professional assignments for your current sprint." },
-      { property: "og:title", content: "Sprint Workspace — Syntax" },
+      { property: "og:title", content: "Sprint Workspace — dCoder" },
       { property: "og:description", content: "Materials, video lessons, exercises and assignments built around real developer communication." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

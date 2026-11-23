@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CompetenciesRouteImport } from './routes/competencies'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as InterviewLabRouteImport } from './routes/interview-lab'
 import { Route as LearningPadRouteImport } from './routes/learning-pad'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const CompetenciesRoute = CompetenciesRouteImport.update({
   id: '/competencies',
   path: '/competencies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InterviewLabRoute = InterviewLabRouteImport.update({
@@ -56,6 +62,7 @@ const SprintRoute = SprintRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/competencies': typeof CompetenciesRoute
+  '/dashboard': typeof DashboardRoute
   '/interview-lab': typeof InterviewLabRoute
   '/learning-pad': typeof LearningPadRoute
   '/profile': typeof ProfileRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/competencies': typeof CompetenciesRoute
+  '/dashboard': typeof DashboardRoute
   '/interview-lab': typeof InterviewLabRoute
   '/learning-pad': typeof LearningPadRoute
   '/profile': typeof ProfileRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/competencies': typeof CompetenciesRoute
+  '/dashboard': typeof DashboardRoute
   '/interview-lab': typeof InterviewLabRoute
   '/learning-pad': typeof LearningPadRoute
   '/profile': typeof ProfileRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/competencies'
+    | '/dashboard'
     | '/interview-lab'
     | '/learning-pad'
     | '/profile'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/competencies'
+    | '/dashboard'
     | '/interview-lab'
     | '/learning-pad'
     | '/profile'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/competencies'
+    | '/dashboard'
     | '/interview-lab'
     | '/learning-pad'
     | '/profile'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompetenciesRoute: typeof CompetenciesRoute
+  DashboardRoute: typeof DashboardRoute
   InterviewLabRoute: typeof InterviewLabRoute
   LearningPadRoute: typeof LearningPadRoute
   ProfileRoute: typeof ProfileRoute
@@ -135,6 +148,13 @@ declare module '@tanstack/react-router' {
       path: '/competencies'
       fullPath: '/competencies'
       preLoaderRoute: typeof CompetenciesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/interview-lab': {
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompetenciesRoute: CompetenciesRoute,
+  DashboardRoute: DashboardRoute,
   InterviewLabRoute: InterviewLabRoute,
   LearningPadRoute: LearningPadRoute,
   ProfileRoute: ProfileRoute,

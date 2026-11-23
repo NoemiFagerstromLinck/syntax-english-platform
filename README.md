@@ -1,4 +1,4 @@
-# Syntax — English for Engineers
+# dCoder — Inglés técnico para developers
 
 Live: https://noemifagerstromlinck.github.io/syntax-english-platform/
 
@@ -6,7 +6,9 @@ Professional English development workspace for IT professionals: student dashboa
 
 Dark-first TanStack Start + React + Tailwind prototype. All content lives in `src/data/platform.ts` as fictional sample data; there is no auth, database or external integration yet.
 
-Two themes ship together, switched from the sidebar: **Obsidian** (graphite + lavender) and **Paper** (bone + ink, no colour). The choice is stored in `localStorage`.
+Two themes ship together, switched from the sidebar: **Obsidian** (near-black + neon) and **Paper** (bone + ink, no colour). The choice is stored in `localStorage`.
+
+`/` is the public landing page. The student app lives under `/dashboard`, `/sprint`, `/learning-pad`, `/competencies`, `/sessions`, `/interview-lab` and `/profile`.
 
 ## Local development
 

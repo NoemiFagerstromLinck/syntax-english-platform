@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/sessions")({
   head: () => ({
     meta: [
-      { title: "Tutor Sessions — Syntax" },
+      { title: "Tutor Sessions — dCoder" },
       { name: "description", content: "Individual 1:1 sprint reviews, tutor feedback and personalised development objectives." },
-      { property: "og:title", content: "Tutor Sessions — Syntax" },
+      { property: "og:title", content: "Tutor Sessions — dCoder" },
       { property: "og:description", content: "1:1 sprint reviews with your tutor, detailed feedback and agreed development objectives." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

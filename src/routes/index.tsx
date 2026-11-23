@@ -1,200 +1,346 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CalendarClock, Check } from "lucide-react";
-import { Meter, Tag } from "@/components/syntax/primitives";
-import { LEVELS, currentSprint, sprintDeliverable, sprintPlan, student, upcomingSessions } from "@/data/platform";
-import { cn } from "@/lib/utils";
+import { ArrowRight, Check } from "lucide-react";
+import { ThemeToggle } from "@/components/syntax/theme";
+import { LEVELS } from "@/data/platform";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Syntax" },
-      { name: "description", content: "Your current sprint, upcoming tutor sessions, learning objectives and professional communication pathway." },
-      { property: "og:title", content: "Dashboard — Syntax" },
-      { property: "og:description", content: "Track your sprint, tutor sessions and professional English communication pathway." },
+      { title: "dCoder — Inglés técnico para developers" },
+      { name: "description", content: "Entrena la comunicación técnica que tu carrera ya te está pidiendo: sprints semanales, práctica escrita y oral, y feedback 1:1." },
+      { property: "og:title", content: "dCoder — Inglés técnico para developers" },
+      { property: "og:description", content: "Tu inglés técnico, al nivel de tu código." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: Dashboard,
+  component: Landing,
 });
 
-const levelNotes: Record<(typeof LEVELS)[number], string> = {
-  "Entry level": "Understands the basics and can introduce themselves at work.",
-  Junior: "Joins stand-ups and writes simple updates in English.",
-  Mid: "Explains decisions and handles most meetings without support.",
-  Senior: "Leads discussions, writes proposals and mentors others.",
-};
+const navLinks = [
+  { href: "#quienes-somos", label: "Quiénes somos" },
+  { href: "#vision", label: "Visión" },
+  { href: "#programa", label: "Programa" },
+  { href: "#carrera", label: "Carrera" },
+];
 
-function Dashboard() {
-  const first = student.name.split(" ")[0];
-  const session = upcomingSessions[0]!;
-  const currentIndex = LEVELS.indexOf(student.communication.current);
-  const nextLevel = LEVELS[currentIndex + 1];
+const week = [
+  { day: "Lun", label: "Planning", state: "done" },
+  { day: "Mar", label: "Technical", state: "done" },
+  { day: "Mié", label: "Practice", state: "current" },
+  { day: "Jue", label: "Interview", state: "todo" },
+  { day: "Vie", label: "Review", state: "todo" },
+];
 
+function Brand() {
   return (
-    <div className="space-y-8">
-      <header className="animate-rise max-w-xl">
-        <h1 className="text-3xl font-semibold leading-tight text-foreground md:text-4xl">Good afternoon, {first}.</h1>
-        <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-          You are mid-sprint: the blocking vs. non-blocking exercise today, the review comment rewrites before Friday&rsquo;s review.
-        </p>
+    <Link to="/" className="flex items-center gap-2.5" aria-label="dCoder, inicio">
+      <span className="grid size-8 place-items-center rounded-lg border border-comm/40 bg-comm-soft font-mono text-sm font-semibold text-comm" aria-hidden>
+        {"</>"}
+      </span>
+      <span className="font-display text-lg font-semibold tracking-tight text-foreground">dCoder</span>
+    </Link>
+  );
+}
+
+function Landing() {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <a href="#contenido" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-primary-foreground">
+        Saltar al contenido
+      </a>
+
+      <header className="sticky top-0 z-40 border-b border-hairline bg-background/90 backdrop-blur">
+        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 md:px-10">
+          <Brand />
+          <nav aria-label="Principal" className="hidden items-center gap-7 md:flex">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <ThemeToggle />
+            <Link to="/dashboard" className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:block">
+              Ya tengo cuenta
+            </Link>
+            <Link
+              to="/dashboard"
+              className="inline-flex h-9 items-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+            >
+              Inscríbete
+            </Link>
+          </div>
+        </div>
       </header>
 
-      <section className="animate-rise panel p-6 md:p-8" aria-labelledby="level-title">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h2 id="level-title" className="text-xl font-semibold text-foreground">Your English at work</h2>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-              Same levels you already know from your career, not exam grades.
+      <main id="contenido">
+        {/* Hero */}
+        <section className="mx-auto grid w-full max-w-6xl items-center gap-14 px-5 pb-20 pt-16 md:px-10 md:pb-28 md:pt-24 lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="animate-rise">
+            <h1 className="text-[2.7rem] font-semibold leading-[1.02] tracking-[-0.035em] md:text-6xl">
+              El inglés que tu <span className="text-comm">carrera</span> ya te está pidiendo.
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              dCoder entrena la comunicación técnica que se usa en equipos reales: code reviews, decisiones de arquitectura y entrevistas. Sin exámenes A1–C2 y sin convertir el aprendizaje en un videojuego.
             </p>
-          </div>
-          <Tag tone="tech">Technical: {student.technical.seniority} frontend · {student.technical.years} yrs</Tag>
-        </div>
-
-        <div className="mt-8 grid grid-cols-4 gap-1.5" role="img" aria-label={nextLevel ? `English level: ${student.communication.current}, ${student.communication.progressToNext}% toward ${nextLevel}` : `English level: ${student.communication.current}`}>
-          {LEVELS.map((level, i) => {
-            const complete = i < currentIndex;
-            const current = i === currentIndex;
-            return (
-              <div key={level} className="min-w-0">
-                <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
-                  <div
-                    className={cn(
-                      "h-full rounded-full transition-[width] duration-700 ease-out",
-                      complete ? "bg-positive" : current ? "bg-comm" : "bg-transparent",
-                    )}
-                    style={{ width: complete ? "100%" : current ? `${student.communication.progressToNext}%` : "0%" }}
-                  />
-                </div>
-                <p className={cn("mt-2 text-[11px] leading-tight sm:text-xs", i <= currentIndex ? "text-foreground" : "text-muted-foreground")}>{level}</p>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 flex flex-col gap-3 border-t border-hairline pt-5 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex items-baseline gap-3">
-            <span className="font-display text-4xl font-semibold leading-none text-comm">{student.communication.current}</span>
-            <span className="text-xs text-muted-foreground">
-              {nextLevel ? `${student.communication.progressToNext}% toward ${nextLevel}` : "Highest level reached"}
-            </span>
-          </div>
-          <p className="max-w-md text-sm leading-relaxed text-muted-foreground sm:text-right">{levelNotes[student.communication.current]}</p>
-        </div>
-      </section>
-
-      <section className="animate-rise panel overflow-hidden" aria-labelledby="sprint-title">
-        <div className="flex flex-wrap items-start justify-between gap-4 p-6 md:p-8">
-          <div className="max-w-2xl">
-            <Tag tone="comm">{currentSprint.code} · Sprint plan</Tag>
-            <h2 id="sprint-title" className="mt-3 text-2xl font-semibold leading-snug text-foreground">{currentSprint.title}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              <span className="text-foreground">Sprint goal:</span> {currentSprint.scenario}
-            </p>
-          </div>
-          <span className="font-mono text-xs text-muted-foreground">Day {currentSprint.currentDay} of {currentSprint.totalDays}</span>
-        </div>
-
-        <dl className="grid gap-px border-y border-hairline bg-hairline sm:grid-cols-[1.5fr_1fr_1fr]">
-          <div className="bg-surface px-5 py-4 md:px-8">
-            <dt className="text-xs text-muted-foreground">Sprint progress</dt>
-            <dd className="mt-2 flex items-center gap-3">
-              <Meter value={currentSprint.progress} tone="comm" className="flex-1" label="Sprint progress" />
-              <span className="font-mono text-xs text-comm">{currentSprint.progress}%</span>
-            </dd>
-          </div>
-          <div className="bg-surface px-5 py-4 md:px-6">
-            <dt className="text-xs text-muted-foreground">Tasks completed</dt>
-            <dd className="mt-1 text-sm font-medium text-foreground">
-              {sprintPlan.completed} of {sprintPlan.total}
-            </dd>
-          </div>
-          <div className="bg-surface px-5 py-4 md:px-6">
-            <dt className="text-xs text-muted-foreground">Focus time</dt>
-            <dd className="mt-1 text-sm font-medium text-foreground">
-              {sprintPlan.focusedTime} <span className="font-normal text-muted-foreground">of {sprintPlan.plannedTime}</span>
-            </dd>
-          </div>
-        </dl>
-
-        <div className="p-6 md:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h3 className="text-sm font-medium text-foreground">{sprintPlan.weekLabel}</h3>
-            <span className="font-mono text-xs text-muted-foreground">Planning → Review &amp; retrospective</span>
-          </div>
-          <ol className="mt-4 grid grid-cols-2 gap-2.5 sm:grid-cols-5" aria-label="Sprint week">
-            {sprintPlan.days.map((d) => {
-              const done = d.status === "done";
-              const current = d.status === "current";
-              return (
-                <li
-                  key={d.day}
-                  aria-current={current ? "step" : undefined}
-                  title={d.detail}
-                  className={cn(
-                    "rounded-lg border p-3 last:col-span-2 sm:last:col-span-1",
-                    current ? "border-comm/50 bg-comm-soft" : "border-hairline bg-surface",
-                  )}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={cn("font-mono text-[11px] uppercase tracking-wider", current ? "text-comm" : "text-muted-foreground")}>{d.day}</span>
-                    <span className="flex items-center gap-1.5">
-                      <span className="font-mono text-[11px] text-muted-foreground">{d.date}</span>
-                      {done ? <Check className="size-3.5 text-positive" aria-label="Completed" /> : null}
-                      {current ? <span className="size-2 rounded-full bg-comm" aria-label="Today" /> : null}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm font-medium leading-snug text-foreground">{d.title}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{d.duration}</p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Link
+                to="/dashboard"
+                className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                Inscríbete <ArrowRight className="size-4" aria-hidden />
+              </Link>
+              <a href="#programa" className="inline-flex h-11 items-center gap-2 text-sm text-foreground transition-colors hover:text-comm">
+                Conoce el programa <ArrowRight className="size-4" aria-hidden />
+              </a>
+            </div>
+            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              {["Sprints semanales", "Práctica escrita y oral", "Feedback 1:1"].map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <Check className="size-4 text-positive" aria-hidden /> {item}
                 </li>
-              );
-            })}
-          </ol>
-          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
-            <Link
-              to="/sprint"
-              className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-            >
-              Continue lesson <ArrowRight className="size-4" aria-hidden />
-            </Link>
-            <Link to="/learning-pad" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-              Practise in the learning pad
-            </Link>
+              ))}
+            </ul>
           </div>
+
+          <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+            <div className="mb-3 ml-1 inline-flex -rotate-2 flex-col rounded-lg border border-hairline bg-surface px-3 py-2 shadow-panel">
+              <p className="font-mono text-[9px] uppercase tracking-wider text-muted-foreground">Recall · 1/4</p>
+              <p className="mt-0.5 text-sm font-semibold text-foreground">Scalability</p>
+            </div>
+
+            <div className="panel overflow-hidden">
+              <div className="flex items-center justify-between border-b border-hairline px-4 py-2.5">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Learning pad · JavaScript</span>
+                <span className="size-1.5 rounded-full bg-comm" aria-hidden />
+              </div>
+              <div className="p-4 md:p-5">
+                <pre className="overflow-x-auto rounded-lg border border-hairline bg-background p-3 font-mono text-[11px] leading-relaxed text-foreground">
+{`const activeUsers = users.filter(
+  user => user.isActive
+);`}
+                </pre>
+                <p className="mt-4 text-sm font-medium text-foreground">Explain your implementation</p>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">What does this code do, and why would you use filter instead of map?</p>
+                <div className="mt-3 rounded-lg border border-hairline bg-surface px-3 py-2.5 font-mono text-[11px] text-muted-foreground">
+                  This code creates a new array…
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <span className="rounded-md bg-primary px-2.5 py-1 text-[11px] font-medium text-primary-foreground">Save answer</span>
+                  <span className="rounded-md border border-hairline px-2.5 py-1 text-[11px] text-muted-foreground">Reference answer</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute -bottom-5 right-1 hidden rounded-xl border border-comm/30 bg-comm-soft px-4 py-3 shadow-panel sm:block">
+              <p className="font-mono text-[9px] uppercase tracking-wider text-comm">Sprint 07 · Day 3</p>
+              <p className="mt-1 text-sm font-medium text-foreground">Communication practice</p>
+              <div className="mt-2 flex gap-1" aria-hidden>
+                {week.map((item) => (
+                  <span
+                    key={item.day}
+                    className={
+                      item.state === "done"
+                        ? "h-1 w-6 rounded-full bg-positive"
+                        : item.state === "current"
+                          ? "h-1 w-6 rounded-full bg-comm"
+                          : "h-1 w-6 rounded-full bg-secondary"
+                    }
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Quiénes somos */}
+        <section id="quienes-somos" className="scroll-mt-20 border-t border-hairline">
+          <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-20 md:px-10 md:py-24 lg:grid-cols-[0.95fr_1.05fr]">
+            <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">
+              Nació de una traductora y de developers cansados de lo mismo.
+            </h2>
+            <div className="max-w-2xl space-y-5 text-base leading-relaxed text-muted-foreground">
+              <p>
+                Isis es traductora. Acompañando a profesionales que aprenden inglés vio el patrón: la gente no abandona por falta de contenido, abandona porque el contenido no se parece a su trabajo.
+              </p>
+              <p>
+                Del otro lado, los equipos de desarrollo viven otra realidad: saben programar, pero explicar una decisión técnica en inglés sigue frenando su carrera. dCoder junta esas dos miradas en un método semanal.
+              </p>
+              <p className="border-l-2 border-comm pl-4 font-display text-xl leading-snug text-foreground">
+                No enseñamos inglés. Entrenamos la comunicación de tu trabajo.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Visión */}
+        <section id="vision" className="scroll-mt-20 border-t border-hairline">
+          <div className="mx-auto w-full max-w-6xl px-5 py-20 md:px-10 md:py-24">
+            <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+              <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">
+                Que el idioma deje de ser el techo de tu carrera.
+              </h2>
+              <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+                Un developer no necesita aprobar un examen para trabajar en inglés: necesita explicar, discutir y decidir. Por eso medimos tu avance en niveles de carrera —Entry level a Senior— y no en letras que no significan nada en una entrevista.
+              </p>
+            </div>
+
+            <dl className="mt-14 grid gap-8 border-t border-hairline pt-10 md:grid-cols-3">
+              {[
+                { title: "Inglés de trabajo, no de examen", text: "Practicas lo que usarás el lunes: stand-ups, pull requests, incidentes y entrevistas." },
+                { title: "Niveles de carrera, no letras", text: "Entry level, Junior, Mid y Senior. Sabes qué significa cada nivel y qué te falta para el siguiente." },
+                { title: "Práctica con intención, no recompensas", text: "Escribes, explicas y recibes feedback. Sin puntos, rachas ni ruido." },
+              ].map((item) => (
+                <div key={item.title}>
+                  <dt className="font-display text-lg font-semibold text-foreground">{item.title}</dt>
+                  <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Programa */}
+        <section id="programa" className="scroll-mt-20 border-t border-hairline">
+          <div className="mx-auto w-full max-w-6xl px-5 py-20 md:px-10 md:py-24">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
+                Un sprint por semana. Cinco días. Un objetivo claro.
+              </h2>
+              <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm text-comm hover:underline">
+                Así se ve por dentro <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+
+            <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline md:grid-cols-5">
+              {week.map((item) => (
+                <li key={item.day} className="bg-surface p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{item.day}</span>
+                    {item.state === "done" ? <Check className="size-3.5 text-positive" aria-label="Completado" /> : null}
+                    {item.state === "current" ? <span className="size-2 rounded-full bg-comm" aria-label="Hoy" /> : null}
+                  </div>
+                  <p className="mt-3 text-sm font-medium text-foreground">{item.label}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {item.state === "done" ? "Listo" : item.state === "current" ? "En curso" : "Próximo"}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-comm">Lunes · Sprint planning</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Defines el objetivo y el vocabulario que vas a necesitar durante la semana.</p>
+              </div>
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-tech">Martes a jueves · Práctica</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Learning Pad, code reviews, ejercicios de entrevista y flashcards con repetición espaciada.</p>
+              </div>
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-lang">Viernes · Sprint review</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Revisión 1:1 con tu tutor, feedback y retrospectiva. El lunes empieza el siguiente sprint.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Carrera */}
+        <section id="carrera" className="scroll-mt-20 border-t border-hairline">
+          <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-20 md:px-10 md:py-24 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">Diferénciate en el mundo laboral.</h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
+                El inglés deja de ser un requisito que cumples a medias y pasa a ser una ventaja que se nota en cómo trabajas.
+              </p>
+              <ul className="mt-8 space-y-3">
+                {[
+                  "Explicas decisiones técnicas sin perder precisión.",
+                  "Escribes code reviews con tono, evidencia y alternativas.",
+                  "Llegas a entrevistas en inglés con estructura, no con frases memorizadas.",
+                  "Negocias alcance y plazos con stakeholders.",
+                ].map((outcome) => (
+                  <li key={outcome} className="flex items-start gap-3 text-sm leading-relaxed text-foreground">
+                    <Check className="mt-0.5 size-4 shrink-0 text-positive" aria-hidden /> {outcome}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="panel p-6 md:p-8">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium text-foreground">Tu inglés, en niveles de carrera</p>
+                <span className="font-mono text-[11px] text-muted-foreground">Demo</span>
+              </div>
+              <div className="mt-7 grid grid-cols-4 gap-1.5">
+                {LEVELS.map((level, index) => (
+                  <div key={level}>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-secondary">
+                      <div
+                        className={index < 1 ? "h-full rounded-full bg-positive" : index === 1 ? "h-full rounded-full bg-comm" : "h-0"}
+                        style={{ width: index === 1 ? "64%" : "100%" }}
+                      />
+                    </div>
+                    <p className={index <= 1 ? "mt-2 text-[11px] leading-tight text-foreground" : "mt-2 text-[11px] leading-tight text-muted-foreground"}>{level}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 border-t border-hairline pt-4 text-xs leading-relaxed text-muted-foreground">
+                Tu nivel de inglés se mide por separado de tu seniority técnica. Un Mid en frontend puede estar en Junior de comunicación, y eso no es un retroceso: es información para saber qué practicar.
+              </p>
+              <Link to="/dashboard" className="mt-6 inline-flex items-center gap-2 text-sm text-comm hover:underline">
+                Ver un perfil de ejemplo <ArrowRight className="size-4" aria-hidden />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA final */}
+        <section className="border-t border-hairline">
+          <div className="mx-auto w-full max-w-6xl px-5 py-20 md:px-10 md:py-24">
+            <div className="rounded-2xl border border-comm/30 bg-comm-soft px-6 py-12 md:px-12 md:py-16">
+              <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">Tu próximo sprint empieza el lunes.</h2>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+                Inscríbete, crea tu cuenta y haz el sprint de prueba. Sin tarjeta y sin exámenes de nivel.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/dashboard"
+                  className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                >
+                  Inscríbete <ArrowRight className="size-4" aria-hidden />
+                </Link>
+                <Link to="/dashboard" className="inline-flex h-11 items-center rounded-lg border border-hairline bg-surface px-5 text-sm font-medium text-foreground transition-colors hover:border-comm/40">
+                  Explorar la demo
+                </Link>
+              </div>
+              <p className="mt-4 text-xs text-muted-foreground">La demo abre el dashboard con datos de ejemplo. No necesitas registro.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-hairline">
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between md:px-10">
+          <div>
+            <Brand />
+            <p className="mt-2 text-xs text-muted-foreground">Inglés técnico para developers.</p>
+          </div>
+          <nav aria-label="Pie de página" className="flex flex-wrap gap-x-6 gap-y-2">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className="text-xs text-muted-foreground transition-colors hover:text-foreground">
+                {link.label}
+              </a>
+            ))}
+            <Link to="/dashboard" className="text-xs text-muted-foreground transition-colors hover:text-foreground">
+              Entrar
+            </Link>
+          </nav>
+          <p className="text-xs text-muted-foreground">© 2026 dCoder</p>
         </div>
-      </section>
-
-      <div className="grid gap-5 lg:grid-cols-[1.35fr_1fr]">
-        <section className="animate-rise panel flex flex-col p-6" aria-labelledby="deliverable-title">
-          <div className="flex items-center justify-between gap-3">
-            <h2 id="deliverable-title" className="text-base font-medium text-foreground">Sprint deliverable</h2>
-            <span className="font-mono text-xs text-muted-foreground">{sprintDeliverable.due}</span>
-          </div>
-          <p className="mt-3 font-display text-xl font-semibold leading-snug text-foreground">{sprintDeliverable.title}</p>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{sprintDeliverable.detail}</p>
-          <p className="mt-3 font-mono text-[11px] text-muted-foreground">{sprintDeliverable.meta}</p>
-          <Link to="/sprint" className="mt-auto inline-flex items-center gap-2 pt-5 text-sm text-comm hover:underline">
-            Open deliverable <ArrowRight className="size-4" aria-hidden />
-          </Link>
-        </section>
-
-        <section className="animate-rise panel flex flex-col p-6" aria-labelledby="session-title">
-          <div className="flex items-center justify-between gap-3">
-            <h2 id="session-title" className="text-base font-medium text-foreground">Next tutor session</h2>
-            <Link to="/sessions" className="text-xs text-comm hover:underline">All sessions</Link>
-          </div>
-          <p className="mt-3 font-display text-xl font-semibold text-foreground">{session.date}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{session.time} · {session.tutor}</p>
-          <p className="mt-3 text-sm font-medium text-foreground">{session.type}</p>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{session.focus}</p>
-          <Link
-            to="/sessions"
-            className="mt-auto inline-flex items-center gap-2 pt-5 text-sm text-foreground transition-colors hover:text-comm"
-          >
-            <CalendarClock className="size-4 text-comm" aria-hidden /> Prepare for the review
-          </Link>
-        </section>
-      </div>
+      </footer>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -83,11 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Syntax — Professional English for developers" },
-      { name: "description", content: "A professional English development workspace for IT professionals and web developers." },
-      { name: "author", content: "Syntax" },
-      { property: "og:title", content: "Syntax — Professional English for developers" },
-      { property: "og:description", content: "A professional English development workspace for IT professionals and web developers." },
+      { title: "dCoder — Inglés técnico para developers" },
+      { name: "description", content: "Inglés técnico para developers: sprints semanales, práctica escrita y oral, y feedback 1:1. Sin exámenes A1–C2." },
+      { name: "author", content: "dCoder" },
+      { property: "og:title", content: "dCoder — Inglés técnico para developers" },
+      { property: "og:description", content: "Entrena la comunicación técnica que tu carrera ya te está pidiendo." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -113,7 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="es" className="dark scroll-smooth" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -138,14 +139,23 @@ function ThemedToaster() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const isPublicPage = pathname === "/";
+
+  useEffect(() => {
+    document.documentElement.lang = isPublicPage ? "es" : "en";
+  }, [isPublicPage]);
 
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <AppShell>
+        {isPublicPage ? (
           <Outlet />
-        </AppShell>
+        ) : (
+          <AppShell>
+            <Outlet />
+          </AppShell>
+        )}
         <ThemedToaster />
       </QueryClientProvider>
     </ThemeProvider>

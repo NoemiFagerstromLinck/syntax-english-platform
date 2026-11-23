@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/profile")({
   head: () => ({
     meta: [
-      { title: "Student Profile — Syntax" },
+      { title: "Student Profile — dCoder" },
       { name: "description", content: "Technical background, professional objectives and English proficiency, kept as separate dimensions." },
-      { property: "og:title", content: "Student Profile — Syntax" },
+      { property: "og:title", content: "Student Profile — dCoder" },
       { property: "og:description", content: "Your technical background, career objectives and English proficiency in one place." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/interview-lab")({
   head: () => ({
     meta: [
-      { title: "Interview Lab — Syntax" },
+      { title: "Interview Lab — dCoder" },
       { name: "description", content: "Frontend, backend and full-stack technical interview simulations in English." },
-      { property: "og:title", content: "Interview Lab — Syntax" },
+      { property: "og:title", content: "Interview Lab — dCoder" },
       { property: "og:description", content: "Rehearse frontend, backend and full-stack interviews in English with structured debriefs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

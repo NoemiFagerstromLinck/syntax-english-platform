@@ -8,7 +8,7 @@ import { Meter } from "./primitives";
 import { cn } from "@/lib/utils";
 
 const nav = [
-  { to: "/", label: "Dashboard", icon: LayoutGrid },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutGrid },
   { to: "/sprint", label: "Sprint Workspace", icon: Layers },
   { to: "/learning-pad", label: "Learning Pad", icon: NotebookPen },
   { to: "/competencies", label: "Competency Profile", icon: Radar },
@@ -19,11 +19,11 @@ const nav = [
 
 function Brand() {
   return (
-    <Link to="/" className="flex items-center gap-2.5 rounded-md">
+    <Link to="/dashboard" className="flex items-center gap-2.5 rounded-md">
       <span className="grid size-8 place-items-center rounded-lg border border-comm/40 bg-comm-soft font-mono text-sm font-semibold text-comm" aria-hidden>
         {"</>"}
       </span>
-      <span className="font-display text-lg font-semibold tracking-tight text-foreground">Syntax</span>
+      <span className="font-display text-lg font-semibold tracking-tight text-foreground">dCoder</span>
     </Link>
   );
 }
@@ -33,7 +33,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <nav aria-label="Main" className="flex flex-col gap-0.5">
       {nav.map((item, i) => {
-        const active = item.to === "/" ? pathname === "/" : pathname.startsWith(item.to);
+        const active = item.to === "/dashboard" ? pathname === "/dashboard" : pathname.startsWith(item.to);
         const Icon = item.icon;
         return (
           <Link
