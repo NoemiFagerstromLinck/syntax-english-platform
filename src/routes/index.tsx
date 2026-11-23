@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { ThemeToggle } from "@/components/syntax/theme";
 import { Logo } from "@/components/syntax/logo";
+import { FaqChat } from "@/components/syntax/faq-chat";
 import { LEVELS } from "@/data/platform";
 
 export const Route = createFileRoute("/")({
@@ -341,6 +342,8 @@ function Landing() {
           <p className="text-xs text-muted-foreground">© 2026 dCoder</p>
         </div>
       </footer>
+
+      <FaqChat variant="public" />
     </div>
   );
 }

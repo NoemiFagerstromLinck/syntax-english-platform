@@ -5,6 +5,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { currentSprint, student } from "@/data/platform";
 import { ThemeToggle } from "./theme";
 import { Logo } from "./logo";
+import { FaqChat } from "./faq-chat";
 import { Meter } from "./primitives";
 import { cn } from "@/lib/utils";
 
@@ -124,6 +125,8 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div className="mx-auto max-w-6xl px-5 py-8 md:px-10 md:py-12">{children}</div>
         </div>
       </main>
+
+      <FaqChat variant="app" />
     </div>
   );
 }
