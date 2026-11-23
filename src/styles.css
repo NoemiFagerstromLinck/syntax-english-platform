@@ -19,7 +19,6 @@
 @theme inline {
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Bricolage Grotesque", "Geist", ui-sans-serif, sans-serif;
-  --font-logo: "Poppins", "Bricolage Grotesque", ui-sans-serif, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
 
   --radius-sm: calc(var(--radius) - 4px);

@@ -8,7 +8,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "dCoder — Inglés técnico para developers" },
-      { name: "description", content: "Entrena la comunicación técnica que tu carrera ya te está pidiendo: sprints semanales, práctica escrita y oral, y feedback 1:1." },
+      { name: "description", content: "dCoder entrena el inglés real de tu trabajo: sprints de 5 días, práctica escrita y oral, y feedback 1:1." },
       { property: "og:title", content: "dCoder — Inglés técnico para developers" },
       { property: "og:description", content: "Tu inglés técnico, al nivel de tu código." },
       { property: "og:type", content: "website" },
@@ -33,10 +33,10 @@ const week = [
   { day: "Vie", label: "Review", state: "todo" },
 ];
 
-function Brand({ showTagline = false }: { showTagline?: boolean }) {
+function Brand({ full = false }: { full?: boolean }) {
   return (
     <Link to="/" className="flex items-center" aria-label="dCoder, inicio">
-      <Logo showTagline={showTagline} />
+      <Logo variant={full ? "full" : "header"} className={full ? "h-14" : "h-9"} />
     </Link>
   );
 }
@@ -81,21 +81,21 @@ function Landing() {
               El inglés que tu <span className="text-comm">carrera</span> ya te está pidiendo.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-              dCoder entrena la comunicación técnica que se usa en equipos reales: code reviews, decisiones de arquitectura y entrevistas. Sin exámenes A1–C2 y sin convertir el aprendizaje en un videojuego.
+              dCoder entrena el inglés real de tu trabajo: defender una decisión técnica, dejar un buen comentario en un PR, pasar una entrevista sin quedarte en blanco. Cinco días a la semana, con un objetivo concreto y feedback de verdad.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
                 to="/dashboard"
                 className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
-                Inscríbete <ArrowRight className="size-4" aria-hidden />
+                Empieza tu sprint <ArrowRight className="size-4" aria-hidden />
               </Link>
               <a href="#programa" className="inline-flex h-11 items-center gap-2 text-sm text-foreground transition-colors hover:text-comm">
-                Conoce el programa <ArrowRight className="size-4" aria-hidden />
+                Ver cómo funciona <ArrowRight className="size-4" aria-hidden />
               </a>
             </div>
             <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              {["Sprints semanales", "Práctica escrita y oral", "Feedback 1:1"].map((item) => (
+              {["Sprints de 5 días", "Práctica escrita y oral", "Feedback 1:1"].map((item) => (
                 <li key={item} className="flex items-center gap-2">
                   <Check className="size-4 text-positive" aria-hidden /> {item}
                 </li>
@@ -157,17 +157,17 @@ function Landing() {
         <section id="quienes-somos" className="scroll-mt-20 border-t border-hairline">
           <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-20 md:px-10 md:py-24 lg:grid-cols-[0.95fr_1.05fr]">
             <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">
-              Nació de una traductora y de developers cansados de lo mismo.
+              El inglés no debería ser el filtro que deja fuera a buenos developers.
             </h2>
             <div className="max-w-2xl space-y-5 text-base leading-relaxed text-muted-foreground">
               <p>
-                Isis es traductora. Acompañando a profesionales que aprenden inglés vio el patrón: la gente no abandona por falta de contenido, abandona porque el contenido no se parece a su trabajo.
+                Hay un momento que se repite: tienes la respuesta, sabes explicarla en tu idioma y aun así te quedas en silencio en la reunión. No falta conocimiento; falta haberlo practicado en el contexto donde importa.
               </p>
               <p>
-                Del otro lado, los equipos de desarrollo viven otra realidad: saben programar, pero explicar una decisión técnica en inglés sigue frenando su carrera. dCoder junta esas dos miradas en un método semanal.
+                dCoder existe para cerrar esa brecha. Lleva el inglés al terreno real del desarrollo, con retos que se parecen a tu día a día y feedback que puedes aplicar al día siguiente.
               </p>
               <p className="border-l-2 border-comm pl-4 font-display text-xl leading-snug text-foreground">
-                No enseñamos inglés. Entrenamos la comunicación de tu trabajo.
+                Tu inglés no necesita ser perfecto. Necesita servirte.
               </p>
             </div>
           </div>
@@ -181,15 +181,15 @@ function Landing() {
                 Que el idioma deje de ser el techo de tu carrera.
               </h2>
               <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
-                Un developer no necesita aprobar un examen para trabajar en inglés: necesita explicar, discutir y decidir. Por eso medimos tu avance en niveles de carrera —Entry level a Senior— y no en letras que no significan nada en una entrevista.
+                El objetivo es simple: que llegues a una reunión, a un pull request o a una entrevista y puedas ser tú. Claro, directo, con criterio. No un alumno recitando reglas.
               </p>
             </div>
 
             <dl className="mt-14 grid gap-8 border-t border-hairline pt-10 md:grid-cols-3">
               {[
-                { title: "Inglés de trabajo, no de examen", text: "Practicas lo que usarás el lunes: stand-ups, pull requests, incidentes y entrevistas." },
-                { title: "Niveles de carrera, no letras", text: "Entry level, Junior, Mid y Senior. Sabes qué significa cada nivel y qué te falta para el siguiente." },
-                { title: "Práctica con intención, no recompensas", text: "Escribes, explicas y recibes feedback. Sin puntos, rachas ni ruido." },
+                { title: "Se practica en el trabajo, no en el vacío", text: "Cada ejercicio nace de una situación real: un comentario en un PR, un incidente en producción, una entrevista técnica." },
+                { title: "Avanzas en niveles que entiendes", text: "Entry level, Junior, Mid y Senior. Los mismos nombres que usas para tu carrera, aplicados a cómo te comunicas." },
+                { title: "Feedback que puedes usar mañana", text: "Tu tutor te dice qué cambiar y cómo decirlo mejor. Nada de puntajes que no significan nada." },
               ].map((item) => (
                 <div key={item.title}>
                   <dt className="font-display text-lg font-semibold text-foreground">{item.title}</dt>
@@ -205,12 +205,15 @@ function Landing() {
           <div className="mx-auto w-full max-w-6xl px-5 py-20 md:px-10 md:py-24">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">
-                Un sprint por semana. Cinco días. Un objetivo claro.
+                Cinco días. Un objetivo. Un cambio que se nota.
               </h2>
               <Link to="/dashboard" className="inline-flex items-center gap-2 text-sm text-comm hover:underline">
                 Así se ve por dentro <ArrowRight className="size-4" aria-hidden />
               </Link>
             </div>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Cada sprint entrena una situación concreta de tu trabajo. El lunes entiendes el reto, durante la semana lo practicas y el viernes lo defiendes.
+            </p>
 
             <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline md:grid-cols-5">
               {week.map((item) => (
@@ -231,15 +234,15 @@ function Landing() {
             <div className="mt-10 grid gap-8 md:grid-cols-3">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-wider text-comm">Lunes · Sprint planning</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Defines el objetivo y el vocabulario que vas a necesitar durante la semana.</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Eliges el reto de la semana: por ejemplo, dar feedback en un code review sin sonar a ataque.</p>
               </div>
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wider text-tech">Martes a jueves · Práctica</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Learning Pad, code reviews, ejercicios de entrevista y flashcards con repetición espaciada.</p>
+                <p className="font-mono text-[11px] uppercase tracking-wider text-tech">Martes a jueves · Práctica guiada</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Escribes, explicas y te equivocas en un espacio seguro. Learning Pad, flashcards y simulaciones reales.</p>
               </div>
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-wider text-lang">Viernes · Sprint review</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Revisión 1:1 con tu tutor, feedback y retrospectiva. El lunes empieza el siguiente sprint.</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Lo presentas, recibes feedback 1:1 y sales con el siguiente paso claro. El lunes arrancas otro reto.</p>
               </div>
             </div>
           </div>
@@ -249,16 +252,16 @@ function Landing() {
         <section id="carrera" className="scroll-mt-20 border-t border-hairline">
           <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-20 md:px-10 md:py-24 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">Diferénciate en el mundo laboral.</h2>
+              <h2 className="max-w-xl text-3xl font-semibold leading-tight md:text-5xl">Tu inglés se convierte en ventaja.</h2>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-                El inglés deja de ser un requisito que cumples a medias y pasa a ser una ventaja que se nota en cómo trabajas.
+                No se trata de sonar como nativo. Se trata de que tu criterio técnico se entienda, se respete y se recuerde.
               </p>
               <ul className="mt-8 space-y-3">
                 {[
                   "Explicas decisiones técnicas sin perder precisión.",
-                  "Escribes code reviews con tono, evidencia y alternativas.",
-                  "Llegas a entrevistas en inglés con estructura, no con frases memorizadas.",
-                  "Negocias alcance y plazos con stakeholders.",
+                  "Dejas comentarios en un PR que se entienden a la primera.",
+                  "Llegas a entrevistas con una estructura clara, no con frases memorizadas.",
+                  "Negocias alcance y plazos sin que el idioma te ponga en desventaja.",
                 ].map((outcome) => (
                   <li key={outcome} className="flex items-start gap-3 text-sm leading-relaxed text-foreground">
                     <Check className="mt-0.5 size-4 shrink-0 text-positive" aria-hidden /> {outcome}
@@ -286,7 +289,7 @@ function Landing() {
                 ))}
               </div>
               <p className="mt-6 border-t border-hairline pt-4 text-xs leading-relaxed text-muted-foreground">
-                Tu nivel de inglés se mide por separado de tu seniority técnica. Un Mid en frontend puede estar en Junior de comunicación, y eso no es un retroceso: es información para saber qué practicar.
+                Tu nivel de inglés se mide por separado de tu seniority técnica. Un Mid en frontend puede estar en Junior de comunicación, y eso no es un retroceso: te dice exactamente qué practicar para tu próximo salto.
               </p>
               <Link to="/dashboard" className="mt-6 inline-flex items-center gap-2 text-sm text-comm hover:underline">
                 Ver un perfil de ejemplo <ArrowRight className="size-4" aria-hidden />
@@ -301,7 +304,7 @@ function Landing() {
             <div className="rounded-2xl border border-comm/30 bg-comm-soft px-6 py-12 md:px-12 md:py-16">
               <h2 className="max-w-2xl text-3xl font-semibold leading-tight md:text-5xl">Tu próximo sprint empieza el lunes.</h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
-                Inscríbete, crea tu cuenta y haz el sprint de prueba. Sin tarjeta y sin exámenes de nivel.
+                Inscríbete y haz tu primer sprint con datos de ejemplo. En cinco días sabrás exactamente cuál es tu siguiente paso, y tendrás las palabras para darlo.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
@@ -311,10 +314,10 @@ function Landing() {
                   Inscríbete <ArrowRight className="size-4" aria-hidden />
                 </Link>
                 <Link to="/dashboard" className="inline-flex h-11 items-center rounded-lg border border-hairline bg-surface px-5 text-sm font-medium text-foreground transition-colors hover:border-comm/40">
-                  Explorar la demo
+                  Probar la demo
                 </Link>
               </div>
-              <p className="mt-4 text-xs text-muted-foreground">La demo abre el dashboard con datos de ejemplo. No necesitas registro.</p>
+              <p className="mt-4 text-xs text-muted-foreground">Sin tarjeta. Entras directo a la demo con datos de ejemplo.</p>
             </div>
           </div>
         </section>
@@ -323,7 +326,7 @@ function Landing() {
       <footer className="border-t border-hairline">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-5 py-10 md:flex-row md:items-center md:justify-between md:px-10">
           <div>
-            <Brand showTagline />
+            <Brand full />
           </div>
           <nav aria-label="Pie de página" className="flex flex-wrap gap-x-6 gap-y-2">
             {navLinks.map((link) => (
